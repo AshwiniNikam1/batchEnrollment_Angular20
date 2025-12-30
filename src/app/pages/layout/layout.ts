@@ -4,7 +4,7 @@ import { Navbar } from '../navbar/navbar';
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterOutlet,Navbar],
+  imports: [RouterOutlet],
   templateUrl: './layout.html',
   styleUrl: './layout.css',
 })

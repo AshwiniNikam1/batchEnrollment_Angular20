@@ -1,1 +1,63 @@
-<p>login works!</p>
+<div class="login-container-fluid parent">
+  <div class="login-card">
+    <h2>Welcome Back</h2>
+    <p>Please login to your account</p>
+
+    <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+      <div class="input-group">
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          [(ngModel)]="loginUserObj.email"
+          name="email"
+          email
+          required
+          #email=ngModel
+        />
+      </div>
+      @if((email.touched|| this.submitted) && email.invalid){
+      <div class="text-danger">
+        @if(email.errors?.['required']){
+        <small>Email is required</small>
+        }
+        @if(email.errors?.['email']){
+        <small>Invalid email format</small>
+        }
+      </div>
+
+      }
+
+      <div class="input-group">
+        <label>Password</label>
+        <input
+          type="password"
+          placeholder="Enter your password"
+          [(ngModel)]="loginUserObj.password"
+          required
+          name="password"
+           #password=ngModel
+        />
+      </div>
+      @if((password.touched || this.submitted) && password.invalid){
+      <div class="text-danger">
+        @if(password.errors?.['required']){
+        <small>Password is required</small>
+        }
+        </div>
+      }
+
+      <div class="options">
+        <label> <input type="checkbox" /> Remember me </label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="submit" >Login</button>
+
+      <div class="signup">
+        <span>Don't have an account?</span>
+        <a href="#">Sign up</a>
+      </div>
+    </form>
+  </div>
+</div>

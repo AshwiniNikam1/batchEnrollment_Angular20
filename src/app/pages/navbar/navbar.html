@@ -1,1 +1,16 @@
-<p>navbar works!</p>
+<nav class="navbar">
+    <div class="nav-left">
+      <div class="logo">MyApp</div>
+      <ul class="menu">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Candidates</a></li>
+        <li><a href="#">Users</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-right">
+      <button class="username">{{loggedUser.email}}</button>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+    
