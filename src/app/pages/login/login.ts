@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginModel } from '../../constant/model/loginModel';
 import { Loginservice } from '../../services/loginService/loginservice';
 import { Router, RouterModule } from '@angular/router';
+import { GlobalConstant } from '../../constant/global.constant';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class Login {
     this.loginService.loginUser(this.loginUserObj).subscribe({
       next: (res: any) => {
         if (res.result) {
-          localStorage.setItem('batchUser', JSON.stringify(res.data));
+          localStorage.setItem(GlobalConstant.LOCAL_KEY_LOGIN, JSON.stringify(res.data));
           alert('Login Successful');
           this.router.navigate(['/dashboard']);
         }
