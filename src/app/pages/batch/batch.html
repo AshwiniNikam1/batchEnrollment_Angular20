@@ -1,1 +1,133 @@
-<p>batch works!</p>
+<div class="parent">
+  <div class="container">
+    <!-- PAGE TITLE -->
+    <div class="page-title"><i class="bi bi-layers-fill me-2"></i> Batch Management System</div>
+
+    <!-- FORM CARD -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="bi bi-pencil-square me-2"></i>{{ isEdit ? 'Update Batch' : 'Add Batch' }}
+      </div>
+
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label"> <i class="bi bi-bookmark-fill me-1"></i>Batch Name </label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="batchObj.batchName"
+                name="batchName"
+                placeholder="Enter batch name"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">
+                <i class="bi bi-calendar-event me-1"></i>Start Date
+              </label>
+              <input
+                type="datetime-local"
+                class="form-control"
+                [(ngModel)]="batchObj.startDate"
+                name="startDate"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label"> <i class="bi bi-calendar-check me-1"></i>End Date </label>
+              <input
+                type="datetime-local"
+                class="form-control"
+                [(ngModel)]="batchObj.endDate"
+                name="endDate"
+              />
+            </div>
+
+            <div class="col-md-8">
+              <label class="form-label"> <i class="bi bi-card-text me-1"></i>Description </label>
+              <textarea
+                class="form-control"
+                [(ngModel)]="batchObj.description"
+                name="description"
+                rows="2"
+              ></textarea>
+            </div>
+
+            <!-- BOOLEAN STATUS -->
+            <div class="col-md-4">
+              <label class="form-label d-block"> <i class="bi bi-toggle-on me-1"></i>Status </label>
+              <div class="form-check form-switch mt-2">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  checked
+                  [(ngModel)]="batchObj.isActive"
+                  name="isActive"
+                />
+                <label class="form-check-label">Is Active</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-end mt-4">
+            <button type="reset" class="btn btn-secondary me-2">
+              <i class="bi bi-x-circle"></i> Clear
+            </button>
+            @if(batchObj.batchId == 0){
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-save"></i> Save Batch
+            </button>
+            } @else{
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-save"></i> Update Batch
+            </button>
+            }
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- TABLE CARD -->
+    <div class="card">
+      <div class="card-header"><i class="bi bi-table me-2"></i>Batch List</div>
+
+      <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr>
+              <th><i class="bi bi-hash"></i> Sr.No</th>
+              <th><i class="bi bi-bookmark"></i> Batch Name</th>
+              <th><i class="bi bi-bookmark"></i> Description</th>
+              <th><i class="bi bi-calendar-event"></i> Start</th>
+              <th><i class="bi bi-calendar-check"></i> End</th>
+              <th><i class="bi bi-toggle-on"></i> Active</th>
+              <th class="text-center"><i class="bi bi-gear"></i> Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let batch of batchList(); let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ batch.batchName }}</td>
+              <td>{{ batch.description }}</td>
+              <td>{{ batch.startDate | date : 'dd-MMM-yyyy' }}</td>
+              <td>{{ batch.endDate | date : 'dd-MMM-yyyy' }}</td>
+              <td>
+                <span class="badge bg-success">{{ batch.isActive }}</span>
+              </td>
+              <td class="text-center">
+                <button class="btn btn-warning btn-sm me-2" (click)="onEditBatch(batch)">
+                  <i class="bi bi-pencil">Edit</i>
+                </button>
+                <button class="btn btn-danger btn-sm" (click)="onDeleteBatch(batch.batchId)">
+                  <i class="bi bi-trash">Delete</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,10 @@
-import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { GlobalConstant } from '../../constant/global.constant';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { GlobalConstant } from '../../core/constant/Global.constant';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })

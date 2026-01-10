@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LoginModel } from '../../constant/model/loginModel';
-import { Loginservice } from '../../services/loginService/loginservice';
 import { Router, RouterModule } from '@angular/router';
-import { GlobalConstant } from '../../constant/global.constant';
+import { LoginModel } from '../../core/constant/model/interfaces/loginModel';
+import { Loginservice } from '../../core/services/loginService/loginservice';
+import { GlobalConstant } from '../../core/constant/Global.constant';
+
 
 @Component({
   selector: 'app-login',
